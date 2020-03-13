@@ -1,22 +1,23 @@
 import auto_coupang
 import auto_naver
 import urllib.request
+import config
 
 
 if __name__ == '__main__':
   # 네이버
   id = input('네이버 아이디를 입력하세요 : ')
   pw = input('네이버 비밀번호를 입력하세요 : ')
-  client_id = input('네이버 API client_id를 입력하세요 : ')
-  client_secret = input('네이버 API client_secret을 입력하세요 : ')
+  client_id = config.API_KEY['NAVER_CLIENT_ID']
+  client_secret = config.API_KEY['NAVER_CLIENT_SECRET']
   callback_url = 'http://localhost:8080/'
   naver = auto_naver.naver
   token = naver.get_logintoken(id, pw, client_id, client_secret, callback_url)
   
   # 쿠팡
   method = 'GET'
-  ACCESS_KEY = input('쿠팡 파트너스 ACCESS_KEY를 입력하세요 : ')
-  SECRET_KEY = input('쿠팡 파트너스 SECRET_KEY를 입력하세요 : ')
+  ACCESS_KEY = config.API_KEY['COUPANG_ACCESS_KEY']
+  SECRET_KEY = config.API_KEY['COUPANG_SECRET_KEY']
   keyword = input("쿠팡 에서 가져올 keyword 입력하세요")
   limit = input("가져올 아이템의 개수를 입력하세요")
   category_number = int(input("네이버 블로그의 category number를 입력하세요"))
