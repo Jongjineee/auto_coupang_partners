@@ -18,12 +18,12 @@ class coupang:
                           message.encode("utf-8"),
                           hashlib.sha256).hexdigest()
 
-      return "CEA algorithm=HmacSHA256, access-key={}, signed-date={}, signature={}".format(access_key, datetime, signature)
+      return f"CEA algorithm=HmacSHA256, access-key={access_key}, signed-date={datetime}, signature={signature}"
 
   def get_product(request_method, authorization, keyword, limit):
     DOMAIN = "https://api-gateway.coupang.com"
     URL = "/v2/providers/affiliate_open_api/apis/openapi/products/search?keyword=" + urllib.parse.quote(keyword) + "&limit=" + str(limit)
-    url = "{}{}".format(DOMAIN, URL)
+    url = f"{DOMAIN}{URL}"
     response = requests.request(method=request_method, url=url, headers={ "Authorization": authorization, "Content-Type": "application/json;charset=UTF-8" })
     retdata = json.dumps(response.json(), indent=4).encode('utf-8')
     jsondata = json.loads(retdata)
@@ -73,4 +73,5 @@ class coupang:
     #   images.append(('image', (fname, open(fnamefull, 'rb'), 'image/png', {'Expires': '0'})))
 
     driver.close()
+
     return title, producturl, price, img
