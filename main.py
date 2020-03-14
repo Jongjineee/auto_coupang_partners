@@ -28,7 +28,7 @@ if __name__ == '__main__':
   for product in products:
     title, producturl, price, img = coupang.make_product_content(product)
     contents_title = "[" + keyword + " 추천" + "]" + title
-    contents = f"<blockquote><div><p><span>{keyword} 추천</span></p></div></blockquote><div position='relative' margin-right='auto' margin-left='auto'><img src='#0' width='410px' /></div> <div text-align='center'><p font-size='24px' font-weight='bold' color='#ae0000'>{price}</div> <div text-align='center'><p font-size='24px'><a href={producturl}>쿠팡 상품 상세정보 확인하기</a></div> <div text-align='center'><p font-size='24px'><a href={producturl}>상품평 / 상품문의 / 배송.교환.반품 안내</a></div> <div margin-top='50px' font-size='13px'>본 포스팅은 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.</div>"
+    contents = f"<blockquote><div><p><span>{keyword} 추천</span></p></div></blockquote><div position='relative' margin-right='auto' margin-left='auto'><img src='#0' width='410px' /></div> <div text-align='center'><p font-size='24px' font-weight='bold' color='#ae0000'>{price}원</div> <div text-align='center'><p font-size='24px'><a href={producturl}>쿠팡 상품 상세정보 확인하기</a></div> <div text-align='center'><p font-size='24px'><a href={producturl}>상품평 / 상품문의 / 배송.교환.반품 안내</a></div> <div margin-top='50px' font-size='13px'>본 포스팅은 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.</div>"
     write_product = naver.write_product(token, contents_title, category_number, contents, img)
     if (write_product == 200):
       print('성공')

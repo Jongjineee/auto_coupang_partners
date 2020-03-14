@@ -45,6 +45,7 @@ class coupang:
     time.sleep(5)
 
     producturl = product['productUrl']
+    price = format(product['productPrice'], ',')
     driver.get(producturl)
     driver.execute_script("Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5]}})")
     driver.execute_script("Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
@@ -52,7 +53,6 @@ class coupang:
     time.sleep(5)
 
     title = driver.find_element_by_class_name("prod-buy-header__title").text
-    price = driver.find_element_by_class_name("total-price").find_element_by_tag_name('strong').text
     # img = driver.find_elements_by_xpath("//*[@class='detail-item']//img") # 쿠팡 제품 상세페이지 이미지 가져오는 코드 -> 너무 이미지가 천차만별
     img = driver.find_elements_by_class_name("prod-image__detail")[0]
     img_src = img.get_attribute('src')
